@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include <map>
 #include <vector>
 
 
@@ -145,16 +146,37 @@ int main(int argc, char* argv[])
       7730, 7736, 7737, 7746, 7759};
 
 #endif
-  // read measurements
 
-
+  /*
+199  A
+200  A B
+208  A B C
+210    B C D
+200  E   C D
+207  E F   D
+240  E F G
+269    F G H
+260      G H
+263        H
+*/
   // iterate through list of measurements and count the times the current is higher then the
   // previous
+  // group the values, 3 values are one windows
   size_t last  = 0;
   size_t times = 0;
-  for (size_t pos = 1; pos < measurements.size(); ++pos)
+  for (size_t pos = 3; pos < measurements.size(); ++pos)
   {
-    if (measurements[pos - 1] < measurements[pos])
+    //    size_t sumLast    = measurements[pos - 1] + measurements[pos - 2] + measurements[pos - 3];
+    //    size_t sumCurrent = measurements[pos -1] + measurements[pos -2] + measurements[pos];
+    size_t sumLast    = measurements[pos - 3];
+    size_t sumCurrent = measurements[pos];
+
+    std::cout << " " << sumCurrent << " "
+              << (sumCurrent > sumLast  ? "more" :
+                  sumCurrent == sumLast ? "equal" :
+                                          "less")
+              << std::endl;
+    if (sumCurrent > sumLast)
     {
       ++times;
     }
