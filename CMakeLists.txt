@@ -7,4 +7,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 project(advent)
 
 
-add_subdirectory(03)
+add_subdirectory(03b)
