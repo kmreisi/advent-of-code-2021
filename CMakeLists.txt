@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 project(advent)
 
+add_subdirectory(_shared)
 add_subdirectory(01)
 add_subdirectory(02)
 add_subdirectory(03)

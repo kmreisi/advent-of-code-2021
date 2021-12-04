@@ -1,5 +1,8 @@
 #include "utils.h"
 
+namespace advent
+{
+
 std::string trim(std::string text)
 {
   // characters to cut
@@ -13,7 +16,6 @@ std::string trim(std::string text)
 
   return text;
 }
-
 
 std::vector<std::string> split(const std::string& original,
                                const std::string& delim,
@@ -51,3 +53,5 @@ std::vector<std::string> split(const std::string& original,
   }
   return result;
 }
+
+}  // namespace advent

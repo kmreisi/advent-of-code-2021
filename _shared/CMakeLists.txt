@@ -20,16 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-set(APP day_03)
-
-add_executable(
-  ${APP}
-  main.cpp
+add_library(
+	advent_days_lib STATIC
+	utils.cpp
 )
-target_link_libraries(${APP} PRIVATE advent_days_lib)
 
-add_custom_command(
-  TARGET ${APP} PRE_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/input.txt ${CMAKE_CURRENT_BINARY_DIR}
-  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/example.txt ${CMAKE_CURRENT_BINARY_DIR}
+target_include_directories(
+	advent_days_lib
+	PUBLIC
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 )
