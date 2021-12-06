@@ -20,18 +20,16 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-cmake_minimum_required(VERSION 3.12)
-message(STATUS "The CMake version is ${CMAKE_VERSION}")
+set(APP day_06)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+add_executable(
+  ${APP}
+  main.cpp
+)
+target_link_libraries(${APP} PRIVATE advent_days_lib)
 
-project(advent)
-
-add_subdirectory(_shared)
-add_subdirectory(01)
-add_subdirectory(02)
-add_subdirectory(03)
-add_subdirectory(04)
-add_subdirectory(05)
-add_subdirectory(06)
+add_custom_command(
+  TARGET ${APP} PRE_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/input.txt ${CMAKE_CURRENT_BINARY_DIR}
+  COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/example.txt ${CMAKE_CURRENT_BINARY_DIR}
+)

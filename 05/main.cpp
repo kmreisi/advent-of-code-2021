@@ -264,7 +264,7 @@ int main(int argc, char* argv[])
   advent::d05::run_a("05A: EX", exampleLines);
   advent::d05::run_a("05A: IN", inputLines);
 
-  std::cout << "\n04B________________________" << std::endl;
+  std::cout << "\n05B________________________" << std::endl;
   advent::d05::run_b("05B: EX", exampleLines);
   advent::d05::run_b("05B: IN", inputLines);
 
