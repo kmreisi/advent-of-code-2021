@@ -37,13 +37,11 @@ struct FuelCon
 };
 
 template <typename LAMBDA, typename LAMBDA2>
-FuelCon findLowestFuel(const std::vector<int>& crabs, int max, LAMBDA fuelFunc, LAMBDA2 next)
+FuelCon findLowestFuel(const std::vector<int>& crabs, int center, int max, LAMBDA fuelFunc, LAMBDA2 next)
 {
 
   size_t lowestFuel = std::numeric_limits<size_t>::max();
   int lowestPos     = 0;
-
-  int center = max / 2;
 
   for (int cnt = 0; cnt < max; ++cnt)
   {
@@ -73,14 +71,19 @@ void findBestFuelConsumption(const std::string& prefix,
                              const std::vector<int>& crabs,
                              LAMBDA fuelFunc)
 {
+  size_t  all = 0;
   int max = 0;
   for (auto pos : crabs)
   {
+    all += pos;
     max = std::max(pos, max);
   }
+
+  int center = static_cast<int>(all / crabs.size());
   // search left and right for lowest
-  FuelCon left  = findLowestFuel(crabs, max, fuelFunc, [](int cnt) { return -cnt; });
-  FuelCon right = findLowestFuel(crabs, max, fuelFunc, [](int cnt) { return +cnt; });
+  std::cout << prefix << ": center " << center << std::endl;
+  FuelCon left  = findLowestFuel(crabs, center, max, fuelFunc, [](int cnt) { return -cnt; });
+  FuelCon right = findLowestFuel(crabs, center, max, fuelFunc, [](int cnt) { return +cnt; });
 
   int pos     = left.fuel < right.fuel ? left.pos : right.pos;
   size_t fuel = left.fuel < right.fuel ? left.fuel : right.fuel;
